@@ -8,9 +8,6 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
-    class Meta:
-        db_table = 'category'
-
 
 class Recipe(models.Model):
     name = models.CharField(blank=False, max_length=80)
@@ -21,7 +18,7 @@ class Recipe(models.Model):
     price = models.IntegerField(blank=True)
     publish_date = models.DateTimeField(auto_now=True)
     image = models.ImageField(upload_to='uploads/', blank=True)
-    category = models.ForeignKey(Category, blank=True, on_delete=models.PROTECT)
+    # category = models.ForeignKey(Category, blank=True, on_delete=models.PROTECT)
 
     def __str__(self):
         return self.name
@@ -30,5 +27,4 @@ class Recipe(models.Model):
         # More Meta options:
         # https://docs.djangoproject.com/en/4.1/ref/models/options/
         ordering = ['-prep_time']
-        db_table = "recipe"
 

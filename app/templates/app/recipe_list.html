@@ -1,0 +1,21 @@
+
+<a href="{% url 'recipe-create' %}">Add new recipe</a>
+
+<table>
+    <try>
+        <th>Dish</th>
+        <th></th>
+        <th></th>
+    </tr>
+    <tr>
+    {% for recipe in recipes %}
+        <td>{{recipe}}</td>
+        <td><a href="{% url 'recipe' recipe.id %}">Details</a></td>
+        <td><a href="{% url 'recipe-update' recipe.id %}">Update</a></td>
+        <td><a href="{% url 'recipe-delete' recipe.id %}">Delete</a></td>
+    </tr>
+    {% empty %}
+            <p>No recipes found</p>
+    {% endfor %}
+        
+            

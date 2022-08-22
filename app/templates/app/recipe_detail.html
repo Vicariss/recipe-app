@@ -1,0 +1,9 @@
+<h1>Detail view</h1>
+
+<a href="{% url 'recipes' %}">Go back</a>
+
+<p>Dish: {{recipe.name}}</p>
+<p>How to prepare: <p>{{recipe.instruction}}</p></p>
+<p>Estimated price: {{recipe.price}} zl</p>
+<p>Prep time: {{recipe.prep_time}} minutes</p>
+<p>Added: {{recipe.publish_date}}</p>

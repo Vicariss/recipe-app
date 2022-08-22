@@ -1,0 +1,11 @@
+<h1>Delete recipe</h1>
+
+<a href="{% url 'recipes' %}">Go back</a>
+
+<p>Are you sure about deleting <i>{{recipe}}</i> recipe? </p>
+
+<form method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Delete">
+</form>
