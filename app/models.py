@@ -5,6 +5,9 @@ from django.db import models
 class Category(models.Model):
     name = models.CharField(max_length=80)
 
+    class Meta:
+        db_table = 'category'
+
 
 class Recipe(models.Model):
     name = models.CharField(blank=False, max_length=80)
@@ -23,4 +26,5 @@ class Recipe(models.Model):
         # More Meta options:
         # https://docs.djangoproject.com/en/4.1/ref/models/options/
         ordering = ['-prep_time']
+        db_table = "recipe"
 
