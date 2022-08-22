@@ -3,7 +3,11 @@
 <a href="{% url 'recipes' %}">Go back</a>
 
 <p>Dish: {{recipe.name}}</p>
+<p>Added: {{recipe.requirements}}</p>
 <p>How to prepare: <p>{{recipe.instruction}}</p></p>
 <p>Estimated price: {{recipe.price}} zl</p>
 <p>Prep time: {{recipe.prep_time}} minutes</p>
 <p>Added: {{recipe.publish_date}}</p>
+{% if recipe.image %}
+    <img src="{{recipe.image.url}}" width="250" height="200">
+{% endif %}

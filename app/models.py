@@ -17,7 +17,7 @@ class Recipe(models.Model):
     prep_time = models.IntegerField(blank=True)
     price = models.IntegerField(blank=True)
     publish_date = models.DateTimeField(auto_now=True)
-    image = models.ImageField(upload_to='uploads/', blank=True)
+    image = models.ImageField(upload_to='images/', blank=True)
     # category = models.ForeignKey(Category, blank=True, on_delete=models.PROTECT)
 
     def __str__(self):
