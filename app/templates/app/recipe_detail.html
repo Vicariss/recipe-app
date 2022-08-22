@@ -3,10 +3,17 @@
 <a href="{% url 'recipes' %}">Go back</a>
 
 <p>Dish: {{recipe.name}}</p>
+<hr>
+<p>{{recipe.description}}</p>
+<hr>
 <p>Added: {{recipe.requirements}}</p>
+<hr>
 <p>How to prepare: <p>{{recipe.instruction}}</p></p>
+<hr>
 <p>Estimated price: {{recipe.price}} zl</p>
+<hr>
 <p>Prep time: {{recipe.prep_time}} minutes</p>
+<hr>
 <p>Added: {{recipe.publish_date}}</p>
 {% if recipe.image %}
     <img src="{{recipe.image.url}}" width="250" height="200">

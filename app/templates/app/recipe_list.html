@@ -1,6 +1,13 @@
 
 <a href="{% url 'recipe-create' %}">Add new recipe</a>
 
+<p>Number of recipes: {{count}}</p>
+
+<form method="GET">
+    <input type="text" name="search-area" value="{{search_input}}">
+    <input type="submit" value="Search">
+</form> 
+
 <table>
     <try>
         <th>Dish</th>
