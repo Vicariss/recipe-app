@@ -1,13 +1,21 @@
-
+<p><a href="{% url 'recipes' %}">All recipes</a></p>
 <a href="{% url 'recipe-create' %}">Add new recipe</a>
-
-<p>Number of recipes: {{count}}</p>
 
 <form method="GET">
     <input type="text" name="search-area" value="{{search_input}}">
     <input type="submit" value="Search">
 </form> 
 
+<form method="GET">
+    <label for="categories">What do we eat now?</label>
+    <select name="choose-category" id="categories">
+        {% for category in categories %}
+                <option value="{{category}}">{{category}}</option>
+        {% endfor %}
+    </select>
+    <br><br>
+    <input type="submit" value="Submit">
+  </form>
 <table>
     <try>
         <th>Dish</th>
@@ -24,5 +32,6 @@
     {% empty %}
             <p>No recipes found</p>
     {% endfor %}
-        
-            
+</table>
+<hr>
+

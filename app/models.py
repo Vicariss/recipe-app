@@ -14,11 +14,11 @@ class Recipe(models.Model):
     description = models.TextField(blank=True)
     requirements = models.TextField(blank=True)
     instruction =  models.TextField(blank=True)
-    prep_time = models.IntegerField(blank=True)
-    price = models.IntegerField(blank=True)
+    prep_time = models.IntegerField(blank=True, null=True)
+    price = models.IntegerField(blank=True, null=True)
+    category = models.CharField(max_length=255, blank=False, default="No category")
     publish_date = models.DateTimeField(auto_now=True)
     image = models.ImageField(upload_to='images/', blank=True)
-    # category = models.ForeignKey(Category, blank=True, on_delete=models.PROTECT)
 
     def __str__(self):
         return self.name
