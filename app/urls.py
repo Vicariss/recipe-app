@@ -5,9 +5,6 @@ from .views import (
     RecipeUpdate, 
     RecipeDelete, 
     RecipeCreate, 
-    LunchRecipeList,
-    DinnerRecipeList,
-    BreakfastRecipeList,
     )
 
 urlpatterns = [
