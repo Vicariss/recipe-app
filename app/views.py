@@ -1,11 +1,7 @@
-from re import search
-from typing import List
-from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, DeleteView, CreateView, UpdateView
 from .models import Recipe, Category
-from django.urls import reverse_lazy, reverse
+from django.urls import reverse_lazy
 from django.db.models import Q
-from django.core.paginator import Paginator
 from .forms import RecipeModelForm
 
 # Create your views here.
