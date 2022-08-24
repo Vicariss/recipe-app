@@ -17,12 +17,12 @@ class RecipeList(ListView):
     paginate_by = 1
 
     def get_queryset(self, *args, **kwargs):
-
+        search_input = self.request.GET.get('search-area') or ''
         choose_category = self.request.GET.get('choose-category')
+
         if choose_category:
             return Recipe.objects.filter(category__icontains=choose_category)
 
-        search_input = self.request.GET.get('search-area') or ''
         if search_input:
             return Recipe.objects.filter(
                 Q(name__icontains=search_input) | Q(requirements__icontains=search_input) | Q(description__icontains=search_input))
