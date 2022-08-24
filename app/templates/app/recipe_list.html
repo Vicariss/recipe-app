@@ -2,11 +2,10 @@
 <a href="{% url 'recipe-create' %}">Add new recipe</a>
 
 <form method="GET">
-    
     {% if not search_input %}
-        <input type="text" name="search-area">
+        <input type="text" name="search">
     {% else %}
-        <input type="text" name="search-area" value="{{search_input}}">
+        <input type="text" name="search" value="{{search_input}}">
         {% endif %}
 
     <input type="submit" value="Search">
@@ -43,9 +42,20 @@
 
 <div class="pagination">
     <span class="step-links">
+
         {% if page_obj.has_previous %}
-            <a href="?page=1">&laquo; first</a>
-            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+
+            {% if search_input %}
+                <a href="?search={{search_input}}&page=1">&laquo; first</a>
+                <a href="?search={{search_input}}&page={{ page_obj.previous_page_number }}">previous</a>
+            {% elif choose_category %}
+                <a href="?choose-category={{choose_category}}&page=1">&laquo; first</a>
+                <a href="?choose-category={{choose_category}}&page={{ page_obj.previous_page_number }}">previous</a>
+            {% else %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+
         {% endif %}
 
         <span class="current">
@@ -53,8 +63,16 @@
         </span>
 
         {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">next</a>
-            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            {% if search_input %}
+                <a href="?search={{search_input}}&page={{ page_obj.next_page_number }}">next</a>
+                <a href="?search={{search_input}}&page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            {% elif choose_category %}
+                <a href="?choose-category={{choose_category}}&page={{ page_obj.next_page_number }}">next</a>
+                <a href="?choose-category={{choose_category}}&page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            {% else %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
         {% endif %}
     </span>
 </div>

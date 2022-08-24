@@ -14,9 +14,9 @@ class RecipeList(ListView):
     paginate_by = 1
 
     def get_queryset(self, *args, **kwargs):
-        search_input = self.request.GET.get('search-area') or ''
+        search_input = self.request.GET.get('search') or ''
         choose_category = self.request.GET.get('choose-category')
-
+        
         if choose_category:
             return Recipe.objects.filter(category__icontains=choose_category)
 
@@ -28,9 +28,12 @@ class RecipeList(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        search_input = self.request.GET.get('search-area') or ''
+        choose_category = self.request.GET.get('choose-category')
+        search_input = self.request.GET.get('search') or ''
         if search_input:
             context["search_input"] = search_input
+        if choose_category:
+            context["choose_category"] = choose_category
             
         context['categories'] = Category.objects.all()
         return context
