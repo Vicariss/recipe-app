@@ -2,12 +2,14 @@
 <a href="{% url 'recipe-create' %}">Add new recipe</a>
 
 <form method="GET">
-    <input type="text" name="search-area" value="{{search_input}}">
+    
     {% if not search_input %}
-        <input type="submit" value="Search">
+        <input type="text" name="search-area">
     {% else %}
-        <input type="submit" value="{{search_input}}">
-    {% endif %}
+        <input type="text" name="search-area" value="{{search_input}}">
+        {% endif %}
+
+    <input type="submit" value="Search">
 </form> 
 
 <form method="GET">
