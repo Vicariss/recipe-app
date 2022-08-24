@@ -3,7 +3,11 @@
 
 <form method="GET">
     <input type="text" name="search-area" value="{{search_input}}">
-    <input type="submit" value="Search">
+    {% if not search_input %}
+        <input type="submit" value="Search">
+    {% else %}
+        <input type="submit" value="{{search_input}}">
+    {% endif %}
 </form> 
 
 <form method="GET">

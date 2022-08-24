@@ -1,3 +1,4 @@
+from re import search
 from typing import List
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, DeleteView, CreateView, UpdateView
@@ -31,6 +32,10 @@ class RecipeList(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        search_input = self.request.GET.get('search-area') or ''
+        if search_input:
+            context["search_input"] = search_input
+            
         context['categories'] = Category.objects.all()
         return context
 
