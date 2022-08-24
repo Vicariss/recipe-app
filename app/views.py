@@ -14,47 +14,25 @@ class RecipeList(ListView):
     model = Recipe
     template_name = "app/recipe_list.html"
     context_object_name = "recipes"
+    paginate_by = 1
 
+    def get_queryset(self, *args, **kwargs):
 
-    def get(self, *args, **kwargs):
+        choose_category = self.request.GET.get('choose-category')
+        if choose_category:
+            return Recipe.objects.filter(category__icontains=choose_category)
+
         search_input = self.request.GET.get('search-area') or ''
         if search_input:
-            return redirect(reverse('recipe-search') + f'?q={search_input}')
+            return Recipe.objects.filter(
+                Q(name__icontains=search_input) | Q(requirements__icontains=search_input) | Q(description__icontains=search_input))
 
-        return super().get(*args, **kwargs)
-
+        return super().get_queryset(*args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['count'] = context['recipes'].count()
-
         context['categories'] = Category.objects.all()
-
-        search_input = self.request.GET.get('search-area') or ''
-        choose_category = self.request.GET.get('choose-category')
-        if choose_category:
-            context["recipes"] = context['recipes'].filter(category__icontains=choose_category)
-            context['chosen_category'] = choose_category
-        # if search_input:
-        #     return redirect(reverse('recipe-search-result') + f'?q={search_input}')
-        #     context['recipes'] = context['recipes'].filter(Q(name__icontains=search_input) | Q(requirements__icontains=search_input) | Q(description__icontains=search_input))
-        #         # https://docs.djangoproject.com/en/4.1/topics/db/queries/#lookups-that-span-relationships
-        #     context['search_input'] = search_input
         return context
-
-
-def search_result(request):
-    q = request.GET.get('q')
-    data = Recipe.objects.filter(
-        Q(name__icontains=q) | Q(requirements__icontains=q) | Q(description__icontains=q)
-    )
-    return render(request, "app/search_results.html", {"recipes":data, "q": q})
-
-
-class SearchResultsPage(ListView):
-    model = Recipe
-    context_object_name = "recipe"
-    # url /recipes/search?q=search
 
 
 class RecipeDetail(DetailView):
