@@ -1,3 +1,4 @@
+from re import search
 from django.urls import path
 from .views import (
     RecipeList, 
@@ -5,6 +6,7 @@ from .views import (
     RecipeUpdate, 
     RecipeDelete, 
     RecipeCreate, 
+    search_result,
     )
 
 urlpatterns = [
@@ -13,4 +15,5 @@ urlpatterns = [
     path('recipe-update/<int:pk>', RecipeUpdate.as_view(), name="recipe-update"),
     path('recipe-delete/<int:pk>', RecipeDelete.as_view(), name="recipe-delete"),
     path('recipe-create/', RecipeCreate.as_view(), name="recipe-create"),
+    path('search/', search_result, name="recipe-search"),
 ]

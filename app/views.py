@@ -1,8 +1,8 @@
-from audioop import reverse
+from typing import List
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, DeleteView, CreateView, UpdateView
 from .models import Recipe, Category
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.db.models import Q
 from django.core.paginator import Paginator
 from .forms import RecipeModelForm
@@ -16,6 +16,14 @@ class RecipeList(ListView):
     context_object_name = "recipes"
 
 
+    def get(self, *args, **kwargs):
+        search_input = self.request.GET.get('search-area') or ''
+        if search_input:
+            return redirect(reverse('recipe-search') + f'?q={search_input}')
+
+        return super().get(*args, **kwargs)
+
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['count'] = context['recipes'].count()
@@ -27,11 +35,26 @@ class RecipeList(ListView):
         if choose_category:
             context["recipes"] = context['recipes'].filter(category__icontains=choose_category)
             context['chosen_category'] = choose_category
-        if search_input:
-            context['recipes'] = context['recipes'].filter(Q(name__icontains=search_input) | Q(requirements__icontains=search_input) | Q(description__icontains=search_input))
-                # https://docs.djangoproject.com/en/4.1/topics/db/queries/#lookups-that-span-relationships
-            context['search_input'] = search_input
+        # if search_input:
+        #     return redirect(reverse('recipe-search-result') + f'?q={search_input}')
+        #     context['recipes'] = context['recipes'].filter(Q(name__icontains=search_input) | Q(requirements__icontains=search_input) | Q(description__icontains=search_input))
+        #         # https://docs.djangoproject.com/en/4.1/topics/db/queries/#lookups-that-span-relationships
+        #     context['search_input'] = search_input
         return context
+
+
+def search_result(request):
+    q = request.GET.get('q')
+    data = Recipe.objects.filter(
+        Q(name__icontains=q) | Q(requirements__icontains=q) | Q(description__icontains=q)
+    )
+    return render(request, "app/search_results.html", {"recipes":data, "q": q})
+
+
+class SearchResultsPage(ListView):
+    model = Recipe
+    context_object_name = "recipe"
+    # url /recipes/search?q=search
 
 
 class RecipeDetail(DetailView):
