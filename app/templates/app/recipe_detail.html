@@ -2,9 +2,11 @@
 
 {% block container %}
 
-<h1>Detail view</h1>
+<h1 style="text-align: center;">{{recipe}}
+    <hr>
+</h1>
 
-<a href="{% url 'recipes' %}">&lt; Go back</a>
+<a href="{% url 'recipes' %}" class="contrast outline" role="button" style="margin-bottom: 35px;">&lt; Go back</a>
 
 <hr>
 <p>Dish: {{recipe.name}}, ({{recipe.category}})</p>
@@ -15,7 +17,7 @@
 <hr>
 <p>How to prepare: <p>{{recipe.instruction}}</p></p>
 <hr>
-<p>Estimated price: {{recipe.price}} zl</p>
+<p>&#xFF04; Estimated price: {{recipe.price}} zl</p>
 <hr>
 <p>Prep time: {{recipe.prep_time}} minutes</p>
 <hr>
@@ -23,5 +25,11 @@
 {% if recipe.image %}
     <img src="{{recipe.image.url}}" width="250" height="200">
 {% endif %}
+
+<article>
+    <header>{{recipe.name}}, {{recipe.category}}</header>
+    Body
+    <footer>Footer</footer>
+</article>
 
 {% endblock container %}

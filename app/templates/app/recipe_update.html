@@ -2,9 +2,12 @@
 
 {% block container %}
 
-<h1>&lt; Update recipe</h1>
+<h1 style="text-align: center;">Update recipe
+    <hr>
+</h1>
 
-<a href="{% url 'recipes' %}">Go back</a>
+<a href="{% url 'recipes' %}" class="contrast outline" role="button" style="margin-bottom: 35px;">&lt; Go back</a>
+
 
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}

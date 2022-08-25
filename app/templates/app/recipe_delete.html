@@ -3,9 +3,11 @@
 {% block container %}
 
 
-<h1>Delete recipe</h1>
+<h1 style="text-align: center; color: red;">Delete recipe
+    <hr>
+</h1>
 
-<a href="{% url 'recipes' %}">&lt;	Go back</a>
+<a href="{% url 'recipes' %}" class="contrast outline" role="button" style="margin-bottom: 35px;">&lt; Go back</a>
 
 <p>Are you sure about deleting <i>{{recipe}}</i> recipe? </p>
 

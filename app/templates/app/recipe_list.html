@@ -2,22 +2,25 @@
 
 {% block container %}
 
-<a href="{% url 'recipe-create' %}" role="button" class="contrast">Add recipe</a>
+<a href="{% url 'recipe-create' %}">
+    <button class="contrast" >&#43; ADD RECIPE</button>
+</a> 
 
+<hr>
 
 <div class="grid">
 <form method="GET">
     <label for="search">Search by name or tag</label>
     {% if not search_input %}
-        <input type="text" name="search">
+        <input type="search" name="search">
     {% else %}
-        <input type="text" name="search" value="{{search_input}}">
+        <input type="search" name="search" value="{{search_input}}">
         {% endif %}
     <input type="submit" value="Search">
 </form> 
 
 <form method="GET">
-    <label for="search">Sort by category</label>
+    <label for="search">≡ Sort by category</label>
     <select name="choose-category" id="categories">
         {% for category in categories %}
                 <option value="{{category}}">{{category}}</option>
@@ -27,20 +30,27 @@
 </form>
 </div>
 
-<a href="{% url 'recipes' %}">Reset results</a>
+
+
+<a href="{% url 'recipes' %}">&#x21bb; Reset</a>
 <table>
     <try>
-        <th>Dish</th>
+        <th></th>
         <th></th>
         <th></th>
         <th></th>
     </tr>
     <tr>
     {% for recipe in recipes %}
-        <td>{{recipe}}</td>
-        <td><a href="{% url 'recipe' recipe.id %}">Recipe</a></td>
-        <td><a href="{% url 'recipe-update' recipe.id %}">Update</a></td>
-        <td><a href="{% url 'recipe-delete' recipe.id %}">Delete</a></td>
+        <td><a href="{% url 'recipe' recipe.id %}" style="color: inherit; font-size: 20px;">{{recipe}}</a></td></td>
+        {% if recipe.image %}
+            <td><a href="{% url 'recipe' recipe.id%}"><img src="{{recipe.image.url}}" width="160" height="100" style="border-radius: 10%; opacity: 0.9;"></td></a>
+        {% else %}
+            <td><img src="static/images/noimage.jpg" width="160" height="100" style="border-radius: 10%; opacity: 0.9;"></td>
+        {% endif %}
+        {% comment %} <td><a href="{% url 'recipe' recipe.id %}">Recipe</a></td> {% endcomment %}
+        <td><a href="{% url 'recipe-update' recipe.id %}" style="color: white;">&#9998;</a></td>
+        <td><a href="{% url 'recipe-delete' recipe.id %}" style="color: #ff4d4d;">&#10005;</a></td>
     </tr>
     {% empty %}
             <p>No recipes found</p>

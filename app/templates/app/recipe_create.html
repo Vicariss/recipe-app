@@ -2,10 +2,13 @@
 
 {% block container %}
 
-<h1>Create recipe</h1>
 
-<a href="{% url 'recipes' %}">&lt; Go back</a>
+<h1 style="text-align: center;">New recipe
+    <hr>
+</h1>
 
+
+<a href="{% url 'recipes' %}" class="contrast outline" role="button" style="margin-bottom: 35px;">&lt; Go back</a>
 
 
 <form method="POST" enctype="multipart/form-data">
