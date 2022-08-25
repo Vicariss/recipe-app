@@ -1,6 +1,8 @@
+{% extends "app/base.html" %}
 
+{% block container %}
 
-<h1>Update recipe</h1>
+<h1>&lt; Update recipe</h1>
 
 <a href="{% url 'recipes' %}">Go back</a>
 
@@ -9,3 +11,5 @@
     {{form.as_p}}
     <input type="submit" value="Update">
 </form>
+
+{% endblock container%}

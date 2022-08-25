@@ -1,6 +1,10 @@
+{% extends "app/base.html" %}
+
+{% block container %}
+
 <h1>Detail view</h1>
 
-<a href="{% url 'recipes' %}">Go back</a>
+<a href="{% url 'recipes' %}">&lt; Go back</a>
 
 <hr>
 <p>Dish: {{recipe.name}}, ({{recipe.category}})</p>
@@ -19,3 +23,5 @@
 {% if recipe.image %}
     <img src="{{recipe.image.url}}" width="250" height="200">
 {% endif %}
+
+{% endblock container %}

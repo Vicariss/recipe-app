@@ -11,7 +11,7 @@ class RecipeList(ListView):
     model = Recipe
     template_name = "app/recipe_list.html"
     context_object_name = "recipes"
-    paginate_by = 1
+    paginate_by = 3
 
     def get_queryset(self, *args, **kwargs):
         search_input = self.request.GET.get('search') or ''

@@ -1,29 +1,37 @@
-<p><a href="{% url 'recipes' %}">All recipes</a></p>
-<a href="{% url 'recipe-create' %}">Add new recipe</a>
+{% extends "app/base.html" %}
 
+{% block container %}
+
+<a href="{% url 'recipe-create' %}" role="button" class="contrast">Add recipe</a>
+
+
+<div class="grid">
 <form method="GET">
+    <label for="search">Search by name or tag</label>
     {% if not search_input %}
         <input type="text" name="search">
     {% else %}
         <input type="text" name="search" value="{{search_input}}">
         {% endif %}
-
     <input type="submit" value="Search">
 </form> 
 
 <form method="GET">
-    <label for="categories">What do we eat now?</label>
+    <label for="search">Sort by category</label>
     <select name="choose-category" id="categories">
         {% for category in categories %}
                 <option value="{{category}}">{{category}}</option>
         {% endfor %}
     </select>
-    <br><br>
     <input type="submit" value="Submit">
-  </form>
+</form>
+</div>
+
+<a href="{% url 'recipes' %}">Reset results</a>
 <table>
     <try>
         <th>Dish</th>
+        <th></th>
         <th></th>
         <th></th>
     </tr>
@@ -38,7 +46,8 @@
             <p>No recipes found</p>
     {% endfor %}
 </table>
-<hr>
+
+
 
 <div class="pagination">
     <span class="step-links">
@@ -76,3 +85,5 @@
         {% endif %}
     </span>
 </div>
+
+{% endblock container %}

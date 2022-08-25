@@ -1,6 +1,11 @@
+{% extends "app/base.html" %}
+
+{% block container %}
+
+
 <h1>Delete recipe</h1>
 
-<a href="{% url 'recipes' %}">Go back</a>
+<a href="{% url 'recipes' %}">&lt;	Go back</a>
 
 <p>Are you sure about deleting <i>{{recipe}}</i> recipe? </p>
 
@@ -9,3 +14,5 @@
     {{form.as_p}}
     <input type="submit" value="Delete">
 </form>
+
+{% endblock container %}
