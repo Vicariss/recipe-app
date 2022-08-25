@@ -3,7 +3,7 @@
 {% block container %}
 
 <a href="{% url 'recipe-create' %}">
-    <button class="contrast" >&#43; ADD RECIPE</button>
+    <button class="secondary" >&#43; ADD RECIPE</button>
 </a> 
 
 <hr>
@@ -26,7 +26,7 @@
                 <option value="{{category}}">{{category}}</option>
         {% endfor %}
     </select>
-    <input type="submit" value="Submit">
+    <input type="submit" value="Filter">
 </form>
 </div>
 
@@ -46,7 +46,7 @@
         {% if recipe.image %}
             <td><a href="{% url 'recipe' recipe.id%}"><img src="{{recipe.image.url}}" width="160" height="100" style="border-radius: 10%; opacity: 0.9;"></td></a>
         {% else %}
-            <td><img src="static/images/noimage.jpg" width="160" height="100" style="border-radius: 10%; opacity: 0.9;"></td>
+            <td><a href="{% url 'recipe' recipe.id%}"><img src="static/images/noimage.jpg" width="160" height="100" style="border-radius: 10%; opacity: 0.9;"></td></a>
         {% endif %}
         {% comment %} <td><a href="{% url 'recipe' recipe.id %}">Recipe</a></td> {% endcomment %}
         <td><a href="{% url 'recipe-update' recipe.id %}" style="color: white;">&#9998;</a></td>

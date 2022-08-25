@@ -12,17 +12,18 @@ class RecipeList(ListView):
     template_name = "app/recipe_list.html"
     context_object_name = "recipes"
     paginate_by = 7
+    ordering = ["-publish_date"]
 
     def get_queryset(self, *args, **kwargs):
         search_input = self.request.GET.get('search') or ''
         choose_category = self.request.GET.get('choose-category')
         
         if choose_category:
-            return Recipe.objects.filter(category__icontains=choose_category)
+            return Recipe.objects.filter(category__icontains=choose_category).order_by("publish_date")
 
         if search_input:
             return Recipe.objects.filter(
-                Q(name__icontains=search_input) | Q(requirements__icontains=search_input) | Q(description__icontains=search_input))
+                Q(name__icontains=search_input) | Q(requirements__icontains=search_input) | Q(description__icontains=search_input)).order_by("publish_date")
 
         return super().get_queryset(*args, **kwargs)
 

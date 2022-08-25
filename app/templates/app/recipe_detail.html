@@ -2,34 +2,39 @@
 
 {% block container %}
 
-<h1 style="text-align: center;">{{recipe}}
+<h1 style="text-align: center;">&#127860; {{recipe}}
     <hr>
 </h1>
 
-<a href="{% url 'recipes' %}" class="contrast outline" role="button" style="margin-bottom: 35px;">&lt; Go back</a>
+<a href="{% url 'recipes' %}" class="contrast outline" role="button" >&lt; Go back</a>
 
-<hr>
-<p>Dish: {{recipe.name}}, ({{recipe.category}})</p>
-<hr>
-<p>{{recipe.description}}</p>
-<hr>
-<p>Added: {{recipe.requirements}}</p>
-<hr>
-<p>How to prepare: <p>{{recipe.instruction}}</p></p>
-<hr>
-<p>&#xFF04; Estimated price: {{recipe.price}} zl</p>
-<hr>
-<p>Prep time: {{recipe.prep_time}} minutes</p>
-<hr>
-<p>Added: {{recipe.publish_date}}</p>
-{% if recipe.image %}
-    <img src="{{recipe.image.url}}" width="250" height="200">
-{% endif %}
+
 
 <article>
-    <header>{{recipe.name}}, {{recipe.category}}</header>
-    Body
-    <footer>Footer</footer>
+    <header>{{recipe.requirements}}</header>
+    {{recipe.instruction}}
+    <footer>
+        <p>
+            &#128345; {{recipe.prep_time}} minutes &nbsp; &nbsp;  &#128181; {{recipe.price}} zł
+        </p>
+            &#128197; Published / Modified: {{recipe.publish_date}}
+        </footer>
 </article>
+
+{% if recipe.image %}
+    <img src="{{recipe.image.url}}" 
+    style=
+    "display: block;
+     width: 80%; 
+     margin-left: auto; 
+     margin-right: auto;
+     border-radius: 8px;
+     border: 2px solid #9E9D9D;">
+
+{% else %}
+    <img src="static/images/noimage.jpg" style="float: center;">
+{% endif %}
+<p></p>
+<hr>
 
 {% endblock container %}
