@@ -65,32 +65,32 @@
         {% if page_obj.has_previous %}
 
             {% if search_input %}
-                <a href="?search={{search_input}}&page=1">&laquo; first</a>
-                <a href="?search={{search_input}}&page={{ page_obj.previous_page_number }}">previous</a>
+                <a class="primary outline" style="font-size: 15px;" role="button" href="?search={{search_input}}&page=1">&laquo; first</a>
+                <a class="primary outline" style="font-size: 15px;" role="button" href="?search={{search_input}}&page={{ page_obj.previous_page_number }}"><</a>
             {% elif choose_category %}
-                <a href="?choose-category={{choose_category}}&page=1">&laquo; first</a>
-                <a href="?choose-category={{choose_category}}&page={{ page_obj.previous_page_number }}">previous</a>
+                <a class="primary outline" style="font-size: 15px;" role="button" href="?choose-category={{choose_category}}&page=1">&laquo; first</a>
+                <a class="primary outline" style="font-size: 15px;" role="button" href="?choose-category={{choose_category}}&page={{ page_obj.previous_page_number }}"><</a>
             {% else %}
-                <a href="?page=1">&laquo; first</a>
-                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                <a class="primary outline" style="font-size: 15px;" role="button" href="?page=1">&laquo; first</a>
+                <a class="primary outline" style="font-size: 15px;" role="button" href="?page={{ page_obj.previous_page_number }}"><</a>
             {% endif %}
 
         {% endif %}
 
-        <span class="current">
+        <span class="current" style="font-size: 15px">
             Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
         </span>
 
         {% if page_obj.has_next %}
             {% if search_input %}
-                <a href="?search={{search_input}}&page={{ page_obj.next_page_number }}">next</a>
-                <a href="?search={{search_input}}&page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                <a role="button" style="font-size: 15px;" class="primary outline" href="?search={{search_input}}&page={{ page_obj.next_page_number }}">></a>
+                <a role="button" style="font-size: 15px;" class="primary outline" href="?search={{search_input}}&page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
             {% elif choose_category %}
-                <a href="?choose-category={{choose_category}}&page={{ page_obj.next_page_number }}">next</a>
-                <a href="?choose-category={{choose_category}}&page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                <a role="button" style="font-size: 15px;" class="primary outline" href="?choose-category={{choose_category}}&page={{ page_obj.next_page_number }}">></a>
+                <a role="button" style="font-size: 15px;" class="primary outline" href="?choose-category={{choose_category}}&page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
             {% else %}
-                <a href="?page={{ page_obj.next_page_number }}">next</a>
-                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                <a role="button" style="font-size: 15px;" class="primary outline" href="?page={{ page_obj.next_page_number }}">></a>
+                <a role="button" style="font-size: 15px;" class="primary outline" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
             {% endif %}
         {% endif %}
     </span>
