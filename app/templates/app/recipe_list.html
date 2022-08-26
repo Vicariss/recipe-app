@@ -78,7 +78,7 @@
         {% endif %}
 
         <span class="current" style="font-size: 15px">
-            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            &nbsp; Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}. &nbsp;
         </span>
 
         {% if page_obj.has_next %}
@@ -95,5 +95,6 @@
         {% endif %}
     </span>
 </div>
+<hr>
 
 {% endblock container %}
