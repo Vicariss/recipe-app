@@ -1,12 +1,12 @@
 from re import search
 from django.urls import path
 from .views import (
-    RecipeList, 
-    RecipeDetail, 
-    RecipeUpdate, 
-    RecipeDelete, 
+    RecipeList,
+    RecipeDetail,
+    RecipeUpdate,
+    RecipeDelete,
     RecipeCreate
-    )
+)
 
 urlpatterns = [
     path('', RecipeList.as_view(), name="recipes"),

@@ -17,7 +17,7 @@ class RecipeList(ListView):
     def get_queryset(self, *args, **kwargs):
         search_input = self.request.GET.get('search') or ''
         choose_category = self.request.GET.get('choose-category')
-        
+
         if choose_category:
             return Recipe.objects.filter(category__icontains=choose_category).order_by("publish_date")
 
@@ -35,7 +35,7 @@ class RecipeList(ListView):
             context["search_input"] = search_input
         if choose_category:
             context["choose_category"] = choose_category
-            
+
         context['categories'] = Category.objects.all()
         return context
 
@@ -64,7 +64,3 @@ class RecipeDelete(DeleteView):
     model = Recipe
     success_url = reverse_lazy('recipes')
     template_name = "app/recipe_delete.html"
-
-
-
-
