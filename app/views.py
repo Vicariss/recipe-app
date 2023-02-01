@@ -4,8 +4,6 @@ from django.urls import reverse_lazy
 from django.db.models import Q
 from .forms import RecipeModelForm
 
-# Create your views here.
-
 
 class RecipeList(ListView):
     model = Recipe
